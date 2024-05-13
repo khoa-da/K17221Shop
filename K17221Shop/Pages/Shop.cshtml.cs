@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace K17221Shop.Pages
 {
-    public class HomepageModel : PageModel
+    public class ShopModel : PageModel
     {
         public void OnGet()
         {
