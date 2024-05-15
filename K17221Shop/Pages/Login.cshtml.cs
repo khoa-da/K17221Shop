@@ -54,6 +54,8 @@ namespace K17221Shop.Pages
                         }
                         if(check.UserRoleId.Equals(1))
                         {
+/*                            HttpContext.Session.SetInt32("UserID", check.UserId);
+                            HttpContext.Session.SetString("isAdmin", check.UserRole.ToString());*/
                             return RedirectToPage("Admin/UserManagement/ShowUserList");
                         }
                     }

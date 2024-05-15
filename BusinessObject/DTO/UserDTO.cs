@@ -19,5 +19,7 @@ namespace BusinessObject.DTO
         public int? UserRoleId { get; set; }
 
         public string? Status { get; set; }
+
+        public string? UserRoleName { get; set; }
     }
 }
