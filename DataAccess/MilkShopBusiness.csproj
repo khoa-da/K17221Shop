@@ -7,9 +7,16 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Repository\" />
-    <Folder Include="Service\Interfaces\" />
-    <Folder Include="Service\Implements\" />
+    <Compile Remove="Repositories\IRepository\Implements\**" />
+    <Compile Remove="Repositories\IRepository\Interfaces\**" />
+    <EmbeddedResource Remove="Repositories\IRepository\Implements\**" />
+    <EmbeddedResource Remove="Repositories\IRepository\Interfaces\**" />
+    <None Remove="Repositories\IRepository\Implements\**" />
+    <None Remove="Repositories\IRepository\Interfaces\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BusinessObject\BusinessObject.csproj" />
   </ItemGroup>
 
 </Project>
