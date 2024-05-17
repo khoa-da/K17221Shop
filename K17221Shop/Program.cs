@@ -5,6 +5,7 @@ using DataAccess.Repositories.Repository;
 using DataAccess.Services.IServices;
 using DataAccess.Services.Services;
 using DataAccess.UnitOfWork;
+using K17221Shop.Extensions;
 using Microsoft.AspNetCore.Authentication.Negotiate;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -38,6 +39,8 @@ builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddDbContext<K17221shopContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DB")));
+builder.Services.AddRazorPages();
+builder.Services.AddDatabase();
 
 
 var app = builder.Build();
