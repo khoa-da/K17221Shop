@@ -1,4 +1,5 @@
-﻿using MilkShopData.Base;
+﻿using BusinessObject.Models;
+using MilkShopData.Base;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace MilkShopData.DAO
 {
-    public class ProductDAO : BaseDAO<ProductDAO>
+    public class ProductDAO : BaseDAO<Product>
     {
         public ProductDAO()
         {

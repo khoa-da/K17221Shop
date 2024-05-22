@@ -46,11 +46,11 @@ namespace MilkShopData.Base
             _context.SaveChanges();
         }
 
-        public async void UpdateAsync(T entity)
+        public async Task<int> UpdateAsync(T entity)
         {
             var tracker = _context.Attach(entity);
             tracker.State = EntityState.Modified;
-            await _context.SaveChangesAsync();
+            return await _context.SaveChangesAsync();
         }
 
         public bool Remove(T entity)
