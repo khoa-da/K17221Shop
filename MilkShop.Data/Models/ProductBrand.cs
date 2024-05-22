@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace BusinessObject.Models;
+namespace MilkShop.Data.Models;
 
-public partial class ProductCategory
+public partial class ProductBrand
 {
-    public int ProductCategoryId { get; set; }
+    public int ProductBrandId { get; set; }
 
-    public string? ProductCategoryName { get; set; }
+    public string? ProductBrandName { get; set; }
 
     public string? Status { get; set; }
 

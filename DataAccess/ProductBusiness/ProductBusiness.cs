@@ -1,4 +1,4 @@
-﻿using BusinessObject.Models;
+﻿using MilkShop.Data.Models;
 using MilkShopBusiness.Base;
 using MilkShopData.DAO;
 using System;
@@ -23,6 +23,10 @@ namespace MilkShopBusiness.ProductBusiness
     {
         private readonly ProductDAO _DAO;
 
+        public ProductBusiness()
+        {
+            _DAO = new ProductDAO();
+        }
         public async Task<IBusinessResult> DeleteAsync(int id)
         {
             try

@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace BusinessObject.Models;
+namespace MilkShop.Data.Models;
 
-public partial class User
+public partial class Customer
 {
     public int UserId { get; set; }
 
@@ -11,15 +11,9 @@ public partial class User
 
     public string? UserEmail { get; set; }
 
-    public string? UserPassword { get; set; }
-
-    public int? UserRoleId { get; set; }
-
     public string? Status { get; set; }
 
     public DateOnly? CreatedDate { get; set; }
 
     public virtual ICollection<Order> Orders { get; set; } = new List<Order>();
-
-    public virtual UserRole? UserRole { get; set; }
 }
