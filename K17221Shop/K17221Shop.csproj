@@ -300,7 +300,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\BusinessObject\MilkShopData.csproj" />
     <ProjectReference Include="..\DataAccess\MilkShopBusiness.csproj" />
   </ItemGroup>
 

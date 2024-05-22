@@ -1,22 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 
-namespace BusinessObject.Models;
+namespace MilkShop.Data.Models;
 
-public partial class K17221shopContext : DbContext
+public partial class MilkShopContext : DbContext
 {
-    public K17221shopContext()
+    public MilkShopContext()
     {
     }
 
-    public K17221shopContext(DbContextOptions<K17221shopContext> options)
+    public MilkShopContext(DbContextOptions<MilkShopContext> options)
         : base(options)
     {
     }
 
     public virtual DbSet<Company> Companies { get; set; }
+
+    public virtual DbSet<Customer> Customers { get; set; }
 
     public virtual DbSet<Order> Orders { get; set; }
 
@@ -32,22 +33,9 @@ public partial class K17221shopContext : DbContext
 
     public virtual DbSet<ProductCategory> ProductCategories { get; set; }
 
-    public virtual DbSet<User> Users { get; set; }
-
-    public virtual DbSet<UserRole> UserRoles { get; set; }
-
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        => optionsBuilder.UseSqlServer(GetConnectionString());
-
-    private string GetConnectionString()
-    {
-        IConfiguration config = new ConfigurationBuilder()
-            .SetBasePath(Directory.GetCurrentDirectory())
-            .AddJsonFile("appsettings.json", true, true)
-            .Build();
-        var strConn = config["ConnectionStrings:DB"];
-        return strConn;
-    }
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
+        => optionsBuilder.UseSqlServer("server =120.72.85.82,9033; database = MilkShop;uid=sa;pwd=f0^wyhMfl*25;TrustServerCertificate=true");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -80,6 +68,28 @@ public partial class K17221shopContext : DbContext
                 .HasMaxLength(10)
                 .IsFixedLength()
                 .HasColumnName("status");
+        });
+
+        modelBuilder.Entity<Customer>(entity =>
+        {
+            entity.HasKey(e => e.UserId).HasName("PK__Users__CB9A1CFFD1B40A8E");
+
+            entity.ToTable("Customer");
+
+            entity.HasIndex(e => e.UserEmail, "UQ__Users__D54ADF550471942A").IsUnique();
+
+            entity.Property(e => e.UserId).HasColumnName("userId");
+            entity.Property(e => e.CreatedDate).HasColumnName("created_date");
+            entity.Property(e => e.Status)
+                .HasMaxLength(10)
+                .IsFixedLength()
+                .HasColumnName("status");
+            entity.Property(e => e.UserEmail)
+                .HasMaxLength(255)
+                .HasColumnName("userEmail");
+            entity.Property(e => e.UserName)
+                .HasMaxLength(50)
+                .HasColumnName("userName");
         });
 
         modelBuilder.Entity<Order>(entity =>
@@ -242,48 +252,6 @@ public partial class K17221shopContext : DbContext
             entity.Property(e => e.Status)
                 .HasMaxLength(50)
                 .HasColumnName("status");
-        });
-
-        modelBuilder.Entity<User>(entity =>
-        {
-            entity.HasKey(e => e.UserId).HasName("PK__Users__CB9A1CFFD1B40A8E");
-
-            entity.HasIndex(e => e.UserEmail, "UQ__Users__D54ADF550471942A").IsUnique();
-
-            entity.Property(e => e.UserId).HasColumnName("userId");
-            entity.Property(e => e.CreatedDate).HasColumnName("created_date");
-            entity.Property(e => e.Status)
-                .HasMaxLength(10)
-                .IsFixedLength()
-                .HasColumnName("status");
-            entity.Property(e => e.UserEmail)
-                .HasMaxLength(255)
-                .HasColumnName("userEmail");
-            entity.Property(e => e.UserName)
-                .HasMaxLength(50)
-                .HasColumnName("userName");
-            entity.Property(e => e.UserPassword)
-                .HasMaxLength(255)
-                .HasColumnName("userPassword");
-            entity.Property(e => e.UserRoleId).HasColumnName("userRoleId");
-
-            entity.HasOne(d => d.UserRole).WithMany(p => p.Users)
-                .HasForeignKey(d => d.UserRoleId)
-                .HasConstraintName("FK__Users__userRoleI__2F10007B");
-        });
-
-        modelBuilder.Entity<UserRole>(entity =>
-        {
-            entity.HasKey(e => e.UserRoleId).HasName("PK__UserRole__CD3149CC1D339A7B");
-
-            entity.Property(e => e.UserRoleId).HasColumnName("userRoleId");
-            entity.Property(e => e.CreatedDate).HasColumnName("created_date");
-            entity.Property(e => e.Status)
-                .HasMaxLength(50)
-                .HasColumnName("status");
-            entity.Property(e => e.UserRoleName)
-                .HasMaxLength(50)
-                .HasColumnName("userRoleName");
         });
 
         OnModelCreatingPartial(modelBuilder);

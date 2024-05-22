@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace BusinessObject.Models;
+namespace MilkShop.Data.Models;
 
 public partial class Order
 {
@@ -29,5 +29,5 @@ public partial class Order
 
     public virtual PaymentMethod? PaymentMethod { get; set; }
 
-    public virtual User? User { get; set; }
+    public virtual Customer? User { get; set; }
 }
