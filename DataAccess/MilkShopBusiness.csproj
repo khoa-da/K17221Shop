@@ -7,15 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Repositories\IRepository\Implements\**" />
-    <Compile Remove="Repositories\IRepository\Interfaces\**" />
-    <EmbeddedResource Remove="Repositories\IRepository\Implements\**" />
-    <EmbeddedResource Remove="Repositories\IRepository\Interfaces\**" />
-    <None Remove="Repositories\IRepository\Implements\**" />
-    <None Remove="Repositories\IRepository\Interfaces\**" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\BusinessObject\MilkShopData.csproj" />
   </ItemGroup>
 
