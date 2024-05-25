@@ -1,4 +1,5 @@
-﻿using MilkShop.Data.DAO;
+﻿using MilkShop.Data;
+using MilkShop.Data.DAO;
 using MilkShop.Data.Models;
 using MilkShopBusiness.Base;
 using System;
@@ -20,10 +21,13 @@ namespace MilkShopBusiness.ProductCategoryBusiness
     }
     public class ProductCategoryBusiness : IProductCategoryBusiness
     {
-        private readonly ProductCategoryDAO _DAO;
+        //private readonly ProductCategoryDAO _DAO;
+        private readonly UnitOfWork _unitOfWork;
+
         public ProductCategoryBusiness()
         {
-            _DAO = new ProductCategoryDAO();
+            //_DAO = new ProductCategoryDAO();
+            _unitOfWork ??= new UnitOfWork();
         }
        
         public Task<IBusinessResult> DeleteAsync(int id)
@@ -35,7 +39,7 @@ namespace MilkShopBusiness.ProductCategoryBusiness
         {
             try
             {
-                var productCategories = await _DAO.GetAllAsync();
+                var productCategories = await _unitOfWork.ProductCategoryRepository.GetAllAsync();
                 if (productCategories != null)
                 {
                     return new BusinessResult(1, "Get all product categories successfully", productCategories);
@@ -56,7 +60,7 @@ namespace MilkShopBusiness.ProductCategoryBusiness
 
             try
             {
-                var productCategory = await _DAO.GetByIdAsync(id);
+                var productCategory = await _unitOfWork.ProductCategoryRepository.GetByIdAsync(id);
                 if (productCategory != null)
                 {
                     return new BusinessResult(1, "Get product category successfully", productCategory);
@@ -75,7 +79,7 @@ namespace MilkShopBusiness.ProductCategoryBusiness
         {
             try
             {
-                var newProductCategory = await _DAO.CreateAsync(productCategory);
+                var newProductCategory = await _unitOfWork.ProductCategoryRepository.CreateAsync(productCategory);
                 if (newProductCategory != null)
                 {
                     return new BusinessResult(1, "Create product category successfully", newProductCategory);
@@ -95,7 +99,7 @@ namespace MilkShopBusiness.ProductCategoryBusiness
         {
             try
             {
-                var productCategoryForUpdate = await _DAO.UpdateAsync(productCategory);
+                var productCategoryForUpdate = await _unitOfWork.ProductCategoryRepository.UpdateAsync(productCategory);
                 if(productCategoryForUpdate != null)
                 {
                     return new BusinessResult(1, "Update product category successfully", productCategoryForUpdate);
@@ -109,7 +113,7 @@ namespace MilkShopBusiness.ProductCategoryBusiness
             {
                 return new BusinessResult(-4, ex.Message);
             }
-        }
+        }   
     }
     
 }
