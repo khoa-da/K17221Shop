@@ -1,4 +1,5 @@
-﻿using MilkShop.Data.DAO;
+﻿using MilkShop.Data;
+using MilkShop.Data.DAO;
 using MilkShop.Data.Models;
 using MilkShopBusiness.Base;
 using System;
@@ -20,10 +21,13 @@ namespace MilkShopBusiness.ProductBrandBusiness
     }
     public class ProductBrandBusiness : IProductBrandBusiness
     {
-        private readonly ProductBrandDAO _DAO;
+        //private readonly ProductBrandDAO _DAO;
+        private readonly UnitOfWork _unitOfWork;
+
         public ProductBrandBusiness()
         {
-            _DAO = new ProductBrandDAO();
+            //_DAO = new ProductBrandDAO();
+            _unitOfWork ??= new UnitOfWork();
         }
        
         public Task<IBusinessResult> DeleteAsync(int id)
@@ -35,7 +39,7 @@ namespace MilkShopBusiness.ProductBrandBusiness
         {
             try
             {
-                var productBrands = await _DAO.GetAllAsync();
+                var productBrands = await _unitOfWork.ProductBrandRepository.GetAllAsync();
                 if (productBrands != null)
                 {
                     return new BusinessResult(1, "Get all product brands successfully", productBrands);
@@ -56,7 +60,7 @@ namespace MilkShopBusiness.ProductBrandBusiness
 
             try
             {
-                var productBrand = await _DAO.GetByIdAsync(id);
+                var productBrand = await _unitOfWork.ProductBrandRepository.GetByIdAsync(id);
                 if (productBrand != null)
                 {
                     return new BusinessResult(1, "Get product brand successfully", productBrand);
@@ -78,7 +82,7 @@ namespace MilkShopBusiness.ProductBrandBusiness
 
             try
             {
-                var newProductBrand = await _DAO.CreateAsync(productBrand);
+                var newProductBrand = await _unitOfWork.ProductBrandRepository.CreateAsync(productBrand);
                 if (newProductBrand > 1)
                 {
                     return new BusinessResult(1, "Create successfully");
@@ -98,7 +102,7 @@ namespace MilkShopBusiness.ProductBrandBusiness
         {
             try
             {
-                var productBrandForUpdate = await _DAO.UpdateAsync(productBrand);
+                var productBrandForUpdate = await _unitOfWork.ProductBrandRepository.UpdateAsync(productBrand);
 
                 if (productBrandForUpdate > 1)
                 {
