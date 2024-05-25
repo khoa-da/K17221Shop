@@ -1,6 +1,8 @@
+
 using Microsoft.AspNetCore.Authentication.Negotiate;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using MilkShop.Data.Models;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -27,7 +29,7 @@ builder.Services.AddSession(options =>
     options.IdleTimeout = TimeSpan.FromMinutes(10);
 });
 
-builder.Services.AddDbContext<K17221shopContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DB")));
+builder.Services.AddDbContext<MilkShopContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DB")));
 builder.Services.AddRazorPages();
 
 
