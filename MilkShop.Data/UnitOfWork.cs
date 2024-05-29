@@ -16,15 +16,17 @@ namespace MilkShop.Data
 
         private MilkShopContext _unitOfWorkContext;
         private ProductBrandRepository _productBrand;
+        private ProductCategoryRepository _productCategoryRepository;
 
         public UnitOfWork() { }
 
         public ProductCategoryRepository ProductCategoryRepository
         {
             get
-            { 
+            {
                 return _productCategoryRepository ??= new ProductCategoryRepository();
             }
+        }
        
 
         public ProductBrandRepository ProductBrandRepository

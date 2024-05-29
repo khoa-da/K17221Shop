@@ -7,11 +7,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MilkShopBusiness", "DataAcc
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "K17221Shop", "K17221Shop\K17221Shop.csproj", "{99AC79BB-2F48-40AF-8488-B6B89134DC46}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MilkShop.Data", "MilkShop.Data\MilkShop.Data.csproj", "{BE6DA1CC-C707-403D-BDA2-F127A105B36C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MilkShop.Data", "MilkShop.Data\MilkShop.Data.csproj", "{BE6DA1CC-C707-403D-BDA2-F127A105B36C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MilkShop.Common", "MilkShop.Common\MilkShop.Common.csproj", "{1C529999-4EA5-4265-8D64-F5F3AA9F29E5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MilkShop.Common", "MilkShop.Common\MilkShop.Common.csproj", "{1C529999-4EA5-4265-8D64-F5F3AA9F29E5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MilkShop.ConsoleApp", "MilkShop.ConsoleApp\MilkShop.ConsoleApp.csproj", "{E1C0DA88-B061-41A2-95F3-C24C99BFABD8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MilkShop.ConsoleApp", "MilkShop.ConsoleApp\MilkShop.ConsoleApp.csproj", "{E1C0DA88-B061-41A2-95F3-C24C99BFABD8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
